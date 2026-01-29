@@ -10,6 +10,11 @@ router.get("/", (req, res) => {
     return res.status(400).json({ error: "Invalid input" });
   }
 
+  // Airport code validation
+  if (!airports[origin] || !airports[destination]) {
+    return res.status(400).json({ error: "Invalid airport code" });
+  }
+
   const dayFlights = flights.filter(f =>
     f.departureTime.startsWith(date)
   );
