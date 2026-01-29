@@ -11,7 +11,10 @@ router.get("/", (req, res) => {
   }
 
   // Airport code validation
-  if (!airports[origin] || !airports[destination]) {
+  const airOrigin = airports.find(a => a.code === origin);
+  const airDestination = airports.find(a => a.code === destination);
+
+  if (!airOrigin || !airDestination) {
     return res.status(400).json({ error: "Invalid airport code" });
   }
 

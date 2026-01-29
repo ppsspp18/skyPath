@@ -61,24 +61,24 @@ function searchItineraries(origin, destination, flights, airports) {
 }
 
 function computeItineraryMeta(segments, airportMap) {
-  // 1️⃣ Convert first departure to UTC
+  //  Convert first departure to UTC
   const startUTC = toUTC(
     segments[0].departureTime,
     airportMap[segments[0].origin].timezone
   );
 
-  // 2️⃣ Convert last arrival to UTC
+  //  Convert last arrival to UTC
   const endUTC = toUTC(
     segments[segments.length - 1].arrivalTime,
     airportMap[segments[segments.length - 1].destination].timezone
   );
 
-  // 3️⃣ Duration in minutes (timezone-safe)
+  //  Duration in minutes (timezone-safe)
   const totalDurationMinutes = Math.round(
     endUTC.diff(startUTC, "minutes").minutes
   );
 
-  // 4️⃣ Total price
+  //  Total price
   const totalPrice = segments.reduce(
     (sum, seg) => sum + seg.price,
     0
